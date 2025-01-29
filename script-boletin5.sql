@@ -1,44 +1,43 @@
-create database Departamentos character set utf8 collate utf8_spanish_ci;
+CREATE TABLE Centros (
+  num_centro INT,
+  nombre VARCHAR(50),
+  direccion VARCHAR(40),
+  localidad VARCHAR(40),
+  provincia VARCHAR(30),
+  CONSTRAINT pk_centros PRIMARY KEY (num_centro)
+);
 
-use Departamentos;
+CREATE TABLE Departamentos (
+  num_dpto INT,
+  nombre VARCHAR(50),
+  presupuesto DECIMAL(10, 2),
+  num_centro INT,
+  CONSTRAINT pk_departamentos PRIMARY KEY (num_dpto),
+  CONSTRAINT fk_departamentos FOREIGN KEY (num_centro) REFERENCES Centros(num_centro)
+);
 
-create table Centros (
-num_centro int(3),
-nombre varchar(50),
-direccion varchar(40),
-localidad varchar(40),provincia varchar(30),
-constraint pk_centros primary key (num_centro))engine=InnoDB;
+CREATE TABLE Empleados (
+  num_emp INT,
+  nombre VARCHAR(50),
+  fecha_nacimiento DATE,
+  fecha_ingreso DATE,
+  telf_emp INT,
+  salario DECIMAL(10, 2),
+  comision DECIMAL(10, 2),
+  num_hijos INT,
+  tipo VARCHAR(10),
+  num_dpto INT,
+  CONSTRAINT pk_empleados PRIMARY KEY (num_emp),
+  CONSTRAINT fk_empleados FOREIGN KEY (num_dpto) REFERENCES Departamentos(num_dpto),
+  CONSTRAINT chk_tipo CHECK (tipo IN ('fijo', 'eventual'))
+);
 
-create table Departamentos (
-num_dpto int(3),
-nombre varchar(50),
-presupuesto decimal(10,2),
-num_centro int(3),
-constraint pk_departamentos primary key (num_dpto),
-constraint fk_departamentos foreign key (num_centro) references Centros(num_centro))engine=InnoDB;
+-- Insert statements with each row inserted separately
+INSERT INTO Centros VALUES (1, 'Zona Sur', 'C/. Miraflores s/n', 'Sevilla', 'Sevilla');
+INSERT INTO Centros VALUES (2, 'Zona Centro', 'Avda. Felipe II,4', 'Dos Hermanas', 'Sevilla');
 
-create table Empleados (
-num_emp int(3),
-nombre varchar(50),
-fecha_nacimiento date,
-fecha_ingreso date,
-telf_emp int(8),
-salario decimal(10,2),
-comision decimal(10,2),
-num_hijos int(1),
-tipo enum('fijo','eventual'),
-num_dpto int(3),
-CONSTRAINT pk_empleados primary key (num_emp),
-CONSTRAINT fk_empleados foreign key (num_dpto) references Departamentos(num_dpto))engine=InnoDB;
+INSERT INTO Departamentos VALUES (5, 'Reparaciones', 150000, 1);
+INSERT INTO Departamentos VALUES (10, 'Ventas', 200000, 2);
 
-insert into Centros values (001,"Zona Sur","C/. Miraflores s/n","Sevilla","Sevilla"),(002,"Zona Centro","Avda. Felipe II,4","Dos Hermanas","Sevilla");
-
-insert into Departamentos values (005,"Reparaciones",150000,001),(010,"Ventas",200000,002);
-
-insert into Empleados values (001,"Juan P�ez",'1960/10/25','1980/10/25',954858691,10000,500,0,'fijo',005),(002,"Rosa Gil",'1965/12/25','1989/10/25',954668221,12000,1500,1,'fijo',010);
-
-load data infile 'C_CENTROS.txt' into table Centros fields terminated by ',' enclosed by '"' lines terminated by '\r\n' starting by '-';
-
-load data infile 'C_DEPARTAMENTOS.txt' into table Departamentos fields terminated by ',' enclosed by '"' lines terminated by '\r\n' starting by '-';
-
-load data infile 'C_EMPLEADOS.txt' into table Empleados fields terminated by ',' enclosed by '"' lines terminated by '\r\n' starting by '-';
+INSERT INTO Empleados VALUES (1, 'Juan Perez', TO_DATE('1960-10-25', 'YYYY-MM-DD'), TO_DATE('1980-10-25', 'YYYY-MM-DD'), 954858691, 10000, 500, 0, 'fijo', 5);
+INSERT INTO Empleados VALUES (2, 'Rosa Gil', TO_DATE('1965-12-25', 'YYYY-MM-DD'), TO_DATE('1989-10-25', 'YYYY-MM-DD'), 954668221, 12000, 1500, 1, 'fijo', 10);

@@ -3,22 +3,22 @@
 ---
 
 ## Índice  
-1. [Consultas sencillas](#consultas-sencillas)  
-2. [Subconsultas](#subconsultas)  
-3. [Combinaciones de tablas](#combinaciones-de-tablas)  
-4. [Inserción de registros. Consultas de datos anexados](#inserción-de-registros-consultas-de-datos-anexados)  
-5. [Modificación de registros. Consultas de actualización](#modificación-de-registros-consultas-de-actualización)  
-6. [Borrado de registros. Consultas de eliminación](#borrado-de-registros-consultas-de-eliminación)  
-7. [Cláusulas avanzadas de selección](#cláusulas-avanzadas-de-selección)  
-   7.1. [Group by y having](#group-by-y-having)  
-   7.2. [Outer joins. Combinaciones externas](#outer-joins-combinaciones-externas)  
-   7.3. [Consultas con operadores de conjuntos](#consultas-con-operadores-de-conjuntos)  
-   7.4. [Subconsultas correlacionadas](#subconsultas-correlacionadas)  
-8. [Control de transacciones en SQL](#control-de-transacciones-en-sql)
+1. [Consultas sencillas](#1-consultas-sencillas)  
+2. [Subconsultas](#2-subconsultas-condiciones-de-búsqueda-i)  
+3. [Combinaciones de tablas](#3-combinación-de-tablas)  
+4. [Inserción de registros. Consultas de datos anexados](#4-inserción-de-registros)  
+5. [Modificación de registros. Consultas de actualización](#5-modificación-de-datos)  
+6. [Borrado de registros. Consultas de eliminación](#6-borrado-de-datos-consultas-de-eliminación)  
+7. [Cláusulas avanzadas de selección](#7-cláusulas-avanzadas-de-selección)  
+   7.1. [Group by y having](#71-group-by-y-having)  
+   7.2. [Outer joins. Combinaciones externas](#72-combinaciones-externas)  
+   7.3. [Consultas con operadores de conjuntos](#73-operadores-de-conjuntos)  
+   7.4. [Subconsultas correlacionadas](#74-subconsultas-correlacionadas)  
+8. [Control de transacciones en SQL](#8-control-de-transacciones-en-sql)
 
 ---
 
-## 1. Consultas sencillas. Sintaxis  
+## 1. consultas sencillas
 Para realizar consultas sobre los datos existentes se emplea la sentencia `SELECT`, cuyo formato básico es el siguiente:
 
 ```sql
